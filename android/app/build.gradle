@@ -24,8 +24,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.lavianda.operaciones_flutter"
-    compileSdk 34
-    ndkVersion "25.1.8937393"
+    compileSdk project.hasProperty('flutter.compileSdkVersion') ? project.property('flutter.compileSdkVersion').toInteger() : 34
+    ndkVersion project.hasProperty('flutter.ndkVersion') ? project.property('flutter.ndkVersion') : "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -42,8 +42,8 @@ android {
 
     defaultConfig {
         applicationId "com.lavianda.operaciones_flutter"
-        minSdk 21
-        targetSdk 34
+        minSdk project.hasProperty('flutter.minSdkVersion') ? project.property('flutter.minSdkVersion').toInteger() : 21
+        targetSdk project.hasProperty('flutter.targetSdkVersion') ? project.property('flutter.targetSdkVersion').toInteger() : 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
