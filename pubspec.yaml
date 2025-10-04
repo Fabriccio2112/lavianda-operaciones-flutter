@@ -118,6 +118,13 @@ dev_dependencies:
   mockito: ^5.4.4
   bloc_test: ^9.1.5
 
+dependency_overrides:
+  # Force compatible versions of geolocator plugins
+  geolocator_android: 4.1.0
+  geolocator_apple: 2.2.5
+  geolocator_web: 2.1.6
+  geolocator_windows: 0.1.1
+
 flutter:
   uses-material-design: true
 
