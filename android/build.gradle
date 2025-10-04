@@ -11,6 +11,26 @@ subprojects {
 }
 subprojects {
     project.evaluationDependsOn(":app")
+    
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            project.android {
+                if (namespace == null) {
+                    namespace project.group
+                }
+            }
+        }
+    }
+}
+
+// Define Flutter properties for all subprojects
+subprojects {
+    ext {
+        compileSdkVersion = 34
+        targetSdkVersion = 34
+        minSdkVersion = 21
+        ndkVersion = "25.1.8937393"
+    }
 }
 
 tasks.register("clean", Delete) {
