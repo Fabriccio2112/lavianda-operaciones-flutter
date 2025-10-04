@@ -25,7 +25,10 @@ Future<void> init() async {
   // =====================
   // Blocs
   // =====================
-  sl.registerFactory(() => AuthBloc(loginUseCase: sl()));
+  sl.registerFactory(() => AuthBloc(
+    loginUseCase: sl(),
+    authRepository: sl(),
+  ));
   sl.registerFactory(() => LocationBloc(
     trackLocationUseCase: sl(),
     getUserLocationsUseCase: sl(),
@@ -59,7 +62,10 @@ Future<void> init() async {
   // Data Sources
   // =====================
   sl.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(apiClient: sl()),
+    () => AuthRemoteDataSourceImpl(
+      apiClient: sl(),
+      secureStorage: sl(),
+    ),
   );
   sl.registerLazySingleton<LocationRemoteDataSource>(
     () => LocationRemoteDataSourceImpl(apiClient: sl()),
