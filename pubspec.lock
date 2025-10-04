@@ -734,15 +734,15 @@ packages:
     source: hosted
     version: "9.0.2"
   geolocator_android:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: geolocator_android
-      sha256: "977d7b47150b331dad7d7c645b83e9fc52ecfd0436afb27fbf9cbee6dcd4075e"
+      sha256: fcb1760a50d7500deca37c9a666785c047139b5f9ee15aa5469fae7dbbe3170d
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.0"
+    version: "4.6.2"
   geolocator_apple:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: geolocator_apple
       sha256: "22b60ca3b8c0f58e6a9688ff855ee39ab813ca3f0c0609a48d282f6631266f2e"
@@ -758,7 +758,7 @@ packages:
     source: hosted
     version: "4.2.6"
   geolocator_web:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: geolocator_web
       sha256: f68a122da48fcfff68bbc9846bb0b74ef651afe84a1b1f6ec20939de4d6860e1
@@ -766,7 +766,7 @@ packages:
     source: hosted
     version: "2.1.6"
   geolocator_windows:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: geolocator_windows
       sha256: f5911c88e23f48b598dd506c7c19eff0e001645bdc03bb6fecb9f4549208354d
