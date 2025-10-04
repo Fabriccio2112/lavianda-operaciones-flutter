@@ -4,6 +4,15 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 import '../constants/app_constants.dart';
 
+// Clase para definir los nombres de canales WebSocket
+class WebSocketChannels {
+  static const String tracking = 'tracking';
+  static const String operaciones = 'operaciones';
+  static const String adminDashboard = 'admin-dashboard';
+  static String registro(int id) => 'registro.$id';
+  static String formulario(int id) => 'formulario.$id';
+}
+
 class WebSocketClient {
   final FlutterSecureStorage secureStorage;
   late PusherChannelsFlutter pusher;
@@ -30,10 +39,6 @@ class WebSocketClient {
         onMemberAdded: onMemberAdded,
         onMemberRemoved: onMemberRemoved,
         onAuthorizer: onAuthorizer,
-        useTLS: true,
-        host: AppConstants.wsHost,
-        wsPort: AppConstants.wsPort,
-        wssPort: AppConstants.wsPort,
         activityTimeout: 120000,
         pongTimeout: 30000,
       );

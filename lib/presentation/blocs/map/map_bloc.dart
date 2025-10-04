@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:equatable/equatable.dart';
 import '../../../core/network/websocket_client.dart';
 import '../../../domain/usecases/get_user_locations_usecase.dart';
 import 'map_event.dart';
@@ -240,7 +242,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
                     : BitmapDescriptor.hueRed,
               ),
               rotation: marker.heading ?? 0,
-              anchor: const Offset(0.5, 0.5),
+              anchor: const ui.Offset(0.5, 0.5),
             ))
         .toSet();
   }

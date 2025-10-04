@@ -311,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               _ProfileOption(
-                icon: Icons.notifications_outline,
+                icon: Icons.notifications_outlined,
                 title: 'Notificaciones',
                 onTap: () {
                   // TODO: Navigate to notifications settings
