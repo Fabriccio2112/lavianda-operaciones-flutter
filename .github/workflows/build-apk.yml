@@ -48,18 +48,49 @@ jobs:
       
     - name: Patch geolocator_android build.gradle
       run: |
-        # Encontrar y parchear el build.gradle de geolocator_android
-        GEOLOCATOR_PATH=$(find ~/.pub-cache/hosted/pub.dev -name "geolocator_android-4.6.2" -type d | head -1)
-        if [ -n "$GEOLOCATOR_PATH" ]; then
-          BUILD_FILE="$GEOLOCATOR_PATH/android/build.gradle"
+        echo "Searching for geolocator_android..."
+        find ~/.pub-cache -name "geolocator_android-4.6.2" -type d
+        
+        # Buscar el directorio de geolocator_android
+        GEOLOCATOR_DIR=$(find ~/.pub-cache/hosted -name "geolocator_android-4.6.2" -type d 2>/dev/null | head -1)
+        
+        if [ -z "$GEOLOCATOR_DIR" ]; then
+          echo "geolocator_android-4.6.2 not found, trying alternative search..."
+          GEOLOCATOR_DIR=$(find ~/.pub-cache -type d -path "*geolocator_android*4.6.2*" 2>/dev/null | head -1)
+        fi
+        
+        if [ -n "$GEOLOCATOR_DIR" ]; then
+          BUILD_FILE="$GEOLOCATOR_DIR/android/build.gradle"
+          echo "Found geolocator at: $GEOLOCATOR_DIR"
+          
           if [ -f "$BUILD_FILE" ]; then
-            echo "Patching $BUILD_FILE"
-            # Reemplazar flutter.compileSdkVersion con 34
+            echo "Original build.gradle content:"
+            cat "$BUILD_FILE"
+            
+            # Crear backup
+            cp "$BUILD_FILE" "$BUILD_FILE.backup"
+            
+            # Aplicar parches con sed
+            sed -i 's/compileSdk flutter\.compileSdkVersion/compileSdk 34/g' "$BUILD_FILE"
             sed -i 's/compileSdkVersion flutter\.compileSdkVersion/compileSdkVersion 34/g' "$BUILD_FILE"
             sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/g' "$BUILD_FILE"
             sed -i 's/targetSdkVersion flutter\.targetSdkVersion/targetSdkVersion 34/g' "$BUILD_FILE"
-            echo "Geolocator_android patched successfully"
+            sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/g' "$BUILD_FILE"
+            sed -i 's/targetSdk flutter\.targetSdkVersion/targetSdk 34/g' "$BUILD_FILE"
+            
+            echo ""
+            echo "Patched build.gradle content:"
+            cat "$BUILD_FILE"
+            echo "✅ Geolocator_android patched successfully!"
+          else
+            echo "❌ Build file not found at: $BUILD_FILE"
+            exit 1
           fi
+        else
+          echo "❌ geolocator_android-4.6.2 directory not found!"
+          echo "Listing pub-cache contents:"
+          ls -la ~/.pub-cache/hosted/ || true
+          exit 1
         fi
       
     - name: Build APK (Debug)
