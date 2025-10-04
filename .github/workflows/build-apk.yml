@@ -33,8 +33,34 @@ jobs:
         echo "flutter.sdk=$FLUTTER_ROOT" > android/local.properties
         echo "sdk.dir=$ANDROID_SDK_ROOT" >> android/local.properties
         
+    - name: Fix geolocator_android build.gradle bug
+      run: |
+        # Definir propiedades Flutter globalmente para evitar el bug de geolocator_android
+        cat >> android/gradle.properties << 'EOF'
+        
+        # Flutter SDK properties (fix for geolocator_android 4.6.2 bug)
+        android.useAndroidX=true
+        android.enableJetifier=true
+        EOF
+        
     - name: Get dependencies
       run: flutter pub get
+      
+    - name: Patch geolocator_android build.gradle
+      run: |
+        # Encontrar y parchear el build.gradle de geolocator_android
+        GEOLOCATOR_PATH=$(find ~/.pub-cache/hosted/pub.dev -name "geolocator_android-4.6.2" -type d | head -1)
+        if [ -n "$GEOLOCATOR_PATH" ]; then
+          BUILD_FILE="$GEOLOCATOR_PATH/android/build.gradle"
+          if [ -f "$BUILD_FILE" ]; then
+            echo "Patching $BUILD_FILE"
+            # Reemplazar flutter.compileSdkVersion con 34
+            sed -i 's/compileSdkVersion flutter\.compileSdkVersion/compileSdkVersion 34/g' "$BUILD_FILE"
+            sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/g' "$BUILD_FILE"
+            sed -i 's/targetSdkVersion flutter\.targetSdkVersion/targetSdkVersion 34/g' "$BUILD_FILE"
+            echo "Geolocator_android patched successfully"
+          fi
+        fi
       
     - name: Build APK (Debug)
       run: flutter build apk --debug
