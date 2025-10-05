@@ -20,6 +20,17 @@ subprojects {
         targetSdkVersion = 34
         minSdkVersion = 21
         ndkVersion = "25.1.8937393"
+        kotlin_version = '1.9.10'
+    }
+
+    // Forzar Kotlin 1.9.10 en todas las dependencias para evitar conflictos de versión binaria
+    configurations.all {
+        resolutionStrategy {
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.9.10'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-common:1.9.10'
+        }
     }
 }
 

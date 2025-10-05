@@ -61,6 +61,10 @@ flutter {
 }
 
 dependencies {
+    // Kotlin standard library - forzar versi\u00f3n 1.9.10 para compatibilidad
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.10'
+    
+    // Google Maps y Location Services
     implementation 'com.google.android.gms:play-services-maps:18.2.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
 }
