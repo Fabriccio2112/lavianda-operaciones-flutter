@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.lavianda.operaciones_flutter"
-    compileSdk 35
+    compileSdk 34
     ndkVersion "25.1.8937393"
 
     compileOptions {
@@ -43,7 +43,7 @@ android {
     defaultConfig {
         applicationId "com.lavianda.operaciones_flutter"
         minSdk 21
-        targetSdk 35
+        targetSdk 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true

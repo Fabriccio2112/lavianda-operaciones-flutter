@@ -71,12 +71,12 @@ jobs:
             cp "$BUILD_FILE" "$BUILD_FILE.backup"
             
             # Aplicar parches con sed
-            sed -i 's/compileSdk flutter\.compileSdkVersion/compileSdk 35/g' "$BUILD_FILE"
-            sed -i 's/compileSdkVersion flutter\.compileSdkVersion/compileSdkVersion 35/g' "$BUILD_FILE"
+            sed -i 's/compileSdk flutter\.compileSdkVersion/compileSdk 34/g' "$BUILD_FILE"
+            sed -i 's/compileSdkVersion flutter\.compileSdkVersion/compileSdkVersion 34/g' "$BUILD_FILE"
             sed -i 's/minSdkVersion flutter\.minSdkVersion/minSdkVersion 21/g' "$BUILD_FILE"
-            sed -i 's/targetSdkVersion flutter\.targetSdkVersion/targetSdkVersion 35/g' "$BUILD_FILE"
+            sed -i 's/targetSdkVersion flutter\.targetSdkVersion/targetSdkVersion 34/g' "$BUILD_FILE"
             sed -i 's/minSdk flutter\.minSdkVersion/minSdk 21/g' "$BUILD_FILE"
-            sed -i 's/targetSdk flutter\.targetSdkVersion/targetSdk 35/g' "$BUILD_FILE"
+            sed -i 's/targetSdk flutter\.targetSdkVersion/targetSdk 34/g' "$BUILD_FILE"
             
             echo ""
             echo "Patched build.gradle content:"

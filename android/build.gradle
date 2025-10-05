@@ -16,8 +16,8 @@ subprojects {
 // Define Flutter properties for all subprojects
 subprojects {
     ext {
-        compileSdkVersion = 35
-        targetSdkVersion = 35
+        compileSdkVersion = 34
+        targetSdkVersion = 34
         minSdkVersion = 21
         ndkVersion = "25.1.8937393"
     }
