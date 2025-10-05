@@ -41,7 +41,6 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.lavianda.operaciones_flutter"
         minSdk 21
         targetSdk 34
         versionCode flutterVersionCode.toInteger()
